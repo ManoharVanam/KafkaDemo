@@ -8,7 +8,7 @@
     <artifactId>KafkaDemo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>KafkaSecureClientDemo</name>
+    <name>KafkaDemo</name>
     <url>http://www.KafkaDemo.com</url>
 
     <properties>
