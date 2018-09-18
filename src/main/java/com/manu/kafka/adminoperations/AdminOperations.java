@@ -11,16 +11,16 @@ import java.util.concurrent.ExecutionException;
 public class AdminOperations {
 
     public static void main(String[] args) {
-        AdminOperations ex = new AdminOperations();
+        AdminOperations adminOperations = new AdminOperations();
         Set<String> topics = new HashSet<>();
         topics.add("topic1");
         topics.add("topic2");
-        ex.createTopic(topics, 3);
-        ex.listTopics();
-        ex.describeTopic(topics);
-        ex.deleteTopic(topics);
+        adminOperations.createTopic(topics, 3);
+        adminOperations.listTopics();
+        adminOperations.describeTopic(topics);
+        adminOperations.deleteTopic(topics);
         // after delete list topics
-        ex.listTopics();
+        adminOperations.listTopics();
 
 
     }
