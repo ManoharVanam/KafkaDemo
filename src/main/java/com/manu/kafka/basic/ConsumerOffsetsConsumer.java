@@ -28,11 +28,11 @@ public class ConsumerOffsetsConsumer {
         start = System.currentTimeMillis();
         Properties properties = new Properties();
         Consumer<byte[], byte[]> consumer;
-        try (FileInputStream fis = new FileInputStream("src/main/resources/consumer.props")) {
+//        try (FileInputStream fis = new FileInputStream("src/main/resources/consumer.props")) {
 
 //            properties.load(fis);
 //            consumer = new KafkaConsumer<>(properties);
-        }
+//        }
         properties.put("bootstrap.servers", bootstrap_servers );
         properties.put("group.id", "thisConsumer");
         properties.put("key.deserializer", "org.apache.kafka.common.serialization.ByteArrayDeserializer");
