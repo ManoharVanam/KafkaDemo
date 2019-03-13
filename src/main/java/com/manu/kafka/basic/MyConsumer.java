@@ -17,26 +17,32 @@ public class MyConsumer {
 
     public static void main(String[] args) throws InterruptedException, IOException {
         String filePath = "/Users/mvanam/Documents/kafkaOutput/";
-        String topic = "manu100";
+        String topic = "test";
         start = System.currentTimeMillis();
-        Consumer<String, byte[]> consumer;
+        Properties properties = new Properties();
+        Consumer<String, String> consumer;
         try (FileInputStream fis = new FileInputStream("src/main/resources/consumer.props")) {
-            Properties properties = new Properties();
+
             properties.load(fis);
             consumer = new KafkaConsumer<>(properties);
         }
+//        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "c418-node2:6667");
+//        properties.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+//        properties.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+
+        consumer = new KafkaConsumer<>(properties);
         consumer.subscribe(Arrays.asList(topic));
         int i =0;
         while (true) {
-            ConsumerRecords<String, byte[]> records = consumer.poll(1);
-            for (ConsumerRecord<String, byte[]> record : records) {
+            ConsumerRecords<String, String> records = consumer.poll(1);
+            for (ConsumerRecord<String, String> record : records) {
 //                        System.out.println(record);
 //                Thread.sleep(1000);
-//                        System.out.printf("Consumed record offset = %d, key = %s, value = %s", record.offset(), record.key(), record.value());
-                FileUtils.writeFile(record.value(), filePath + "file-" + i++ + ".log");
+                        System.out.printf("Consumed record offset = %d, key = %s, value = %s", record.offset(), record.key(), record.value().toString());
+//                FileUtils.writeFile(record.value(), filePath + "file-" + i++ + ".log");
 //                        System.out.println("\n");
                 long end = System.currentTimeMillis();
-                System.out.println("Total time : " + (end - start) + "MilliSecs");
+                System.out.println(" Total time : " + (end - start) + "MilliSecs");
             }
             consumer.commitSync();
 
